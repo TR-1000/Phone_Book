@@ -6,6 +6,7 @@ const methodOverride  = require('method-override');
 const mongoose = require ('mongoose');
 const app = express ();
 const db = mongoose.connection;
+const mongoURI = "mongodb://localhost 27017/"+"phone_book"; // the db name will be builds
 //___________________
 //PORT
 //___________________
@@ -25,7 +26,7 @@ mongoose.set('useCreateIndex', true);
 
 // SOMEDAY WE'LL FIND IT, THAT MONGOOSE CONNECTION
 mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true}, () => {
-  console.log("Someday we'll find it, the mongoose connection...The lovers, the dreamers and me");
+  console.log("Someday we'll find it, the mongoose connection...");
 });
 
 // Error / success
