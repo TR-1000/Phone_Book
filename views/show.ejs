@@ -4,48 +4,77 @@
     <% include ./partials/head.ejs %>
   </head>
   <body>
-    <form  action="/phones/<%=phone.id %>?_method=DELETE" method="POST">
-      <input type="submit" value="Delete Phone">
-    </form>
-    <div class="container">
-      <img src="<%=phone.img%>" alt="">
-      <h1><%=phone.name%></h1>
-      <h2><%=phone.model%></h2>
 
-      Current Status: <%=phone.status%>
-      <h3>Description</h3>
-      <article class="flow-text z-depth-1">
-        <%=phone.description%>
-      </article>
+    <header>
+      <% include ./partials/header.ejs %>
+    </header>
 
-      <h3>Log</h3>
-      <article class="flow-text z-depth-1">
-        <%=phone.log%>
-      </article>
+    <main>
+      <form class="btn waves-effect waves-light" action="/phones/<%=phone.id %>?_method=DELETE" method="POST">
+        <input type="submit" value="Delete Phone">
+      </form>
+      <div class="container">
+        <img src="<%=phone.img%>" alt="">
+        <h1><%=phone.name%></h1>
+        <h2><%=phone.model%></h2>
 
-      <h3>Gallery</h3>
-      <div class="gallery">
+        Current Status: <%=phone.status%>
+        <h3>Description</h3>
+        <article class="flow-text z-depth-1">
+          <%=phone.description%>
+        </article>
 
-        <% for (image of phone.gallery.split(",")) { %>
-          <img src="<%=image %>" alt="">
-        <% } %>
+        <h3>Log</h3>
+        <article class="flow-text z-depth-1">
+          <%=phone.log%>
+        </article>
+
+        <h3>Gallery</h3>
+        <div class="row">
+            <% for (image of phone.gallery.split(",")) { %>
+              <div class="col s12 m6 14">
+                <img width="550" src="<%=image %>" alt="">
+              </div>
+            <% } %>
+        </div>
+
+        <h3>Album</h3>
+        <div class="row">
+            <% for (image of phone.album.split(",")) { %>
+              <div class="col s12 m6 14">
+                <img width="550" src="<%=image %>" class="responsive">
+              </div>
+            <% } %>
+        </div>
       </div>
 
-      <h3>Album</h3>
-      <div class="album">
-        <% for (image of phone.album.split(",")) { %>
-          <img src="<%=image %>" alt="">
-        <% } %>
-      </div>
+      <form action="/phones/<%=phone.id %>/edit" method="GET">
+        <input type="submit" value="Edit Phone Info" class="btn waves-effect waves-light">
+      </form>
+    </main>
 
-    </div>
-
-    <form action="/phones/<%=phone.id %>/edit" method="GET">
-      <input type="submit" value="Edit Phone Info">
-    </form>
+    <footer></footer>
 
 
+
+
+
+
+
+
+
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous">
+  </script>
     <!-- Compiled and minified JavaScript -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   <script>
+    $(document).ready(function(){
+      $('.parallax').parallax();
+    });
+
+   </script>
   </body>
 </html>
