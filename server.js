@@ -54,12 +54,13 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a   form
 // ROUTES
 //___________________
 
-
+/*new*/
 app.get("/phones/new", (req,res) => {
   res.render("new.ejs");
 });
 
 
+/*create*/
 app.post("/phones", (req, res) => {
   Phone.create(req.body, (error, newPhone) => {
     console.log(req.body);
@@ -68,6 +69,7 @@ app.post("/phones", (req, res) => {
 });
 
 
+/*index*/
 app.get("/phones", (req, res) => {
   Phone.find({}, (error, collection) => {
     res.render("index.ejs", {
@@ -76,6 +78,9 @@ app.get("/phones", (req, res) => {
   });
 });
 
+
+
+/*show*/
 app.get("/phones/:id", (req, res) => {
   Phone.findById(req.params.id, (error, foundPhone) => {
     res.render("show.ejs", {
@@ -85,42 +90,30 @@ app.get("/phones/:id", (req, res) => {
 });
 
 
+/*edit*/
+app.get("/phones/:id/edit", (req, res) => {
+  Phone.findById(req.params.id, (error, foundPhone) => {
+    res.render("edit.ejs", {
+      phone: foundPhone
+    });
+  });
+});
 
 
+/*update*/
+app.put("/phones/:id", (req, res) => {
+  Phone.findByIdAndUpdate(req.params.id, req.body, {new:true}, (error, updatedPhone) => {
+    res.redirect(`/phones/${req.params.id}`)
+  });
+});
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*delete*/
+app.delete("/phones/:id", (req, res) => {
+  Phone.findByIdAndRemove(req.params.id, (error, data) => {
+    res.redirect("/phones");
+  });
+});
 
 
 //___________________
