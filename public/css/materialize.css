@@ -4332,8 +4332,8 @@ nav .brand-logo {
   position: absolute;
   color: #fff;
   display: inline-block;
-  font-size: 4.1rem;
-  padding: 0;
+  font-size: 1.8rem;
+  padding-left: 15px;
 }
 
 nav .brand-logo.center {
