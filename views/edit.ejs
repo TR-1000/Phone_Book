@@ -4,6 +4,10 @@
     <% include ./partials/head.ejs %>
   </head>
   <body>
+    <header>
+      <% include ./partials/header.ejs %>
+    </header>
+    
     <a href="/phones">Phone home</a>
     <h2>Edit This Phone's Infor</h2>
     <form action="/phones/<%=phone.id %>?_method=PUT" method="POST">

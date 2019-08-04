@@ -54,7 +54,7 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a   form
 // ROUTES
 //___________________
 /*home*/
-ap.get("/", (req, res) => {
+app.get("/", (req, res) => {
   res.render("home.ejs")
 })
 

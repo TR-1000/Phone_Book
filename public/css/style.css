@@ -21,5 +21,12 @@ textarea {
 } */
 
 .parallax-container {
-      height: 400px;
-    }
+
+  height: 300px;
+}
+
+
+nav {
+  height: 95px;
+  padding: 15px;
+}
