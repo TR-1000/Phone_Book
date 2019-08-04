@@ -2946,7 +2946,7 @@ ul.staggered-list li {
 .page-footer {
   padding-top: 20px;
   color: #fff;
-  background-color: #ee6e73;
+  background-color: #011117;
 }
 
 .page-footer .footer-copyright {
@@ -6669,7 +6669,7 @@ textarea.materialize-textarea + label:after, .select-wrapper + label:after {
 /* Textarea */
 textarea {
   width: 100%;
-  height: 3rem;
+  height: 26rem;
   background-color: transparent;
 }
 
