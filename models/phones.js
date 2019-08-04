@@ -1,4 +1,4 @@
-///////BUILD SCHEMA/////
+///////PHONE SCHEMA/////
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
@@ -6,14 +6,13 @@ const Schema = mongoose.Schema;
 
 const phoneSchema = new Schema ({
   name: {type: String, required: true},
+  model:{type: String},
   img: {type: String},
-  gallery: [String],
-  album: [String],
+  gallery: String,
+  album: String,
   description: {type: String},
-  ram: {type: String},
-  album: [String],
   status:String,
-  acc:[String],
+  acc:String,
   log: String
 },{timestamps: true})
 

@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <link rel="stylesheet" href="/css/style.css">
-    <meta charset="utf-8">
-    <title>Phone_Book</title>
+    <% include ./partials/head.ejs %>
   </head>
   <body>
     <header>
@@ -13,16 +11,23 @@
 
 
     </header>
-    <h1>Phone_Book</h1>
-    <h2>A log of smartPhone addiction</h2>
 
+
+    <h2>A log of smartPhone addiction</h2>
+    <a href="/phones/new">Add a phone to your collection</a>
+    <h3>trizzle's smartphone collection</h3>
     (each list item should be a link that will take you to a page about the phone with photos and a log entry about the phone)
-    <ul>
-      <h2>listOfPhones</h2>
-      <li>Samsung BlacJack II </li>
-      <li>Samsung Epix</li>
-      <li>Samsung Propel Pro</li>
-      <li>Samsung Galaxy S</li>
+
+    <% for (phone of phones) { %>
+      <a href="/phones/<%=phone.id%>">
+          <div class="container">
+            <h3> <%=phone.name%> </h3>
+            <img src="<%=phone.img%>" alt="">
+          </div>
+      </a>
+    <% } %>
+
+
 
     </ul>
   <footer>

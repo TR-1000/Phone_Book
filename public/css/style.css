@@ -2,17 +2,14 @@ body {
   background: black;
   color: white;
   font-family: monospace;
-
 }
 
 header {
   background-image: url(https://www.techwench.com/wp-content/uploads/2011/06/Samsung-Blackjack-II-1-600x600.jpg);
-
 }
+
  header h1 {
    font-size: 95px;
-   
-
  }
 
 header h2 {

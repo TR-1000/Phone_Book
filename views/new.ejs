@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <% include ./partials/head.ejs %>
+  </head>
+  <body>
+    <a href="/phones">Phone home</a>
+    <h1>Add a new phone to your collection</h1>
+    <form class="" action="/phones" method="POST">
+
+      phone name
+      <input type="text" name="name" id="name"> <br>
+
+      model number
+      <input type="text" name="model" id="model"> <br>
+
+      main image url
+      <input type="text" name="img" id="img"> <br>
+
+      gallery images (pictures of your phone) <br>
+      <textarea name="gallery" rows="8" cols="80" placeholder="enter comma-separated values"></textarea> <br>
+
+
+      album images (Album of images taken with this phone) <br>
+      <textarea name="album" rows="8" cols="80" placeholder="enter comma-separated values"></textarea> <br>
+
+      description and specs <br>
+      <textarea name="description" rows="8" cols="80"></textarea> <br>
+
+      status
+      <input type="text" name="status" id="status" placeholder="daily driver/ sold / traded in/ broken"> <br>
+
+      accessories
+      <input type="text" name="acc" id="acc" placeholder="enter comma-separated values"> <br>
+
+      log entry <br>
+      <textarea name="log" rows="8" cols="80" placeholder="What's the story with this phone"></textarea> <br>
+
+      <input type="submit" value="Add Phone"> <br>
+
+    </form>
+
+
+  </body>
+</html>
