@@ -12,43 +12,50 @@
 
 
     <main>
-      <form class="btn waves-effect waves-light" action="/phones/<%=phone.id %>?_method=DELETE" method="POST">
-        <input type="submit" value="Delete Phone">
-      </form>
       <div class="container">
         <img src="<%=phone.img%>" alt="">
         <h1><%=phone.name%></h1>
         <h2><%=phone.model%></h2>
 
         Current Status: <%=phone.status%>
-        <h3>Description</h3>
-        <article class="flow-text">
+
+        <article class="flow-text card">
+          <h3>Description</h3>
           <%=phone.description%>
         </article>
 
-        <h3>Log</h3>
-        <article class="flow-text">
+
+        <article class="flow-text card">
+          <h3>Log Entry</h3>
           <%=phone.log%>
         </article>
 
         <h3>Gallery</h3>
-        <div class="row">
+        <div class="slider" style= "height:900px">
+          <ul class="slides">
             <% for (image of phone.gallery.split(",")) { %>
-              <div class="col s12 m6 14">
-                <img width="550" src="<%=image %>" alt="">
-              </div>
+              <li style="opacity: 0; transform: translateX(0px) translateY(0px);">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="background-image: url(<%=image %>);">
+              </li>
             <% } %>
+          </ul>
         </div>
 
         <h3>Album</h3>
-        <div class="row">
+        <div class="slider">
+          <ul class="slides">
             <% for (image of phone.album.split(",")) { %>
-              <div class="col s12 m6 14">
-                <img width="550" src="<%=image %>" class="responsive">
-              </div>
+
+              <li style="opacity: 0; transform: translateX(0px) translateY(0px);">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="background-image: url(<%=image %>);">
+              </li>
             <% } %>
+          </ul>
         </div>
-      </div>
+
+      <form class="btn waves-effect waves-light right" action="/phones/<%=phone.id %>?_method=DELETE" method="POST">
+        <input type="submit" value="Delete Phone">
+      </form>
 
       <form action="/phones/<%=phone.id %>/edit" method="GET">
         <input type="submit" value="Edit Phone Info" class="btn waves-effect waves-light">
@@ -60,6 +67,7 @@
     </footer>
 
     <!-- Scripts -->
-  <% include ./partials/header.ejs %>
+  <% include ./partials/scripts.ejs %>
   </body>
+
 </html>

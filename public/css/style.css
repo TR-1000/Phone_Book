@@ -28,4 +28,41 @@ textarea {
 header h1 {
   color: #fff;
   font-size: 10em;
+  font-family: 'Play', sans-serif;
+}
+
+article h1 {
+  font-family: 'Play', sans-serif;
+}
+
+.index {
+  height: 380px;
+}
+
+.slider {
+  height: 900px;
+}
+
+body {
+  background-color: #dedede
+}
+
+.index-img {
+  height: 315px;
+  margin: 15px;
+}
+
+.index-container {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  wi
+}
+
+main {
+  text-align: center;
+}
+
+.home-text {
+  font-size: 35px;
 }

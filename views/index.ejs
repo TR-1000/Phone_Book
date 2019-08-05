@@ -12,25 +12,28 @@
 
     <main>
       <h3>trizzle's smartphone collection</h3>
+    <div class="container index-container">
+
 
       <% for (phone of phones) { %>
         <a href="/phones/<%=phone.id%>">
-            <div class="container">
+
               <h3> <%=phone.name%> </h3>
-              <img src="<%=phone.img%>" alt="">
-            </div>
+              <img src="<%=phone.img%>" class="index-img">
+
         </a>
       <% } %>
 
 
 
       </ul>
+    </div>
     </main>
 
 
 
   <footer>
-    <% include ./partials/scripts.ejs %>
+    <% include ./partials/footer.ejs %>
   </footer>
   <!-- Scripts -->
   <% include ./partials/scripts.ejs %>
