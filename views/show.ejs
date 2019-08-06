@@ -9,14 +9,12 @@
       <% include ./partials/header.ejs %>
     </header>
 
-
-
     <main>
       <div class="container">
         <img src="<%=phone.img%>" alt="">
         <h1><%=phone.name%></h1>
         <h2><%=phone.model%></h2>
-        <h2><%=phone%></h2>
+      
 
         Current Status: <%=phone.status%>
 
@@ -56,17 +54,23 @@
 
 
     </div>
-
     <% if (typeof currentUser !== "undefined" ) { %>
-      <form class="btn waves-effect waves-light right" action="/phones/<%=phone.id %>?_method=DELETE" method="POST">
-        <input type="submit" value="Delete Phone">
-      </form>
+      <% if (currentUser.username === "TR-1000") { %>
+        <form class="btn waves-effect waves-light right" action="/phones/<%=phone.id %>?_method=DELETE" method="POST">
+          <input type="submit" value="Delete Phone">
+        </form>
 
-      <form class="left" action="/phones/<%=phone.id %>/edit" method="GET">
-        <input type="submit" value="Edit Phone Info" class="btn waves-effect waves-light">
-      </form>
-      </main>
+        <form class="left" action="/phones/<%=phone.id %>/edit" method="GET">
+          <input type="submit" value="Edit Phone Info" class="btn waves-effect waves-light">
+        </form>
+      <% } %>
     <% } %>
+
+
+      </main>
+
+
+
 
 
     <footer>

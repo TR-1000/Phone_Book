@@ -16,7 +16,7 @@ users.post('/', (req, res) => {
       console.log(err)
     }
     console.log(createdUser);
-    res.redirect('/user/ejs')
+    res.redirect('/')
   });
 });
 

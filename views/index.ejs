@@ -10,7 +10,9 @@
     </header>
 
     <% if (typeof currentUser !== "undefined" ) { %>
-      <a id="mew" href="/phones/new">Add a phone to your collection</a>
+      <% if (currentUser.username === "TR-1000") { %>
+        <a id="mew" href="/phones/new">Add a phone to your collection</a>
+      <% } %>
     <% } %>
 
     <main>
@@ -19,12 +21,8 @@
         <a href="/phones/<%=phone.id%>">
               <h3> <%=phone.name%> </h3>
               <img src="<%=phone.img%>" class="index-img">
-
         </a>
       <% } %>
-
-
-
       </ul>
     </div>
     </main>
@@ -34,6 +32,8 @@
   <footer>
     <% include ./partials/footer.ejs %>
   </footer>
+
+
   <!-- Scripts -->
   <% include ./partials/scripts.ejs %>
   </body>

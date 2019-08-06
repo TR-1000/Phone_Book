@@ -99,7 +99,7 @@ app.post("/phones", (req, res) => {
   Phone.create(req.body, (error, newPhone) => {
     console.log(req.body);
     push.req.session.currentUser.phones(req.body)
-    res.redirect("/phones",);
+    res.redirect("/phones");
   });
 });
 
