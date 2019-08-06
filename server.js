@@ -6,12 +6,12 @@ const methodOverride  = require('method-override');
 const mongoose = require ('mongoose');
 const app = express ();
 const db = mongoose.connection;
-const mongoURI = "mongodb://localhost 27017/"+"gameOfPhones"; // the db name will be builds
-const Phone = require("./models/phones.js");
+const mongoURI = "mongodb://localhost 27017/"+"gameOfPhones";
 const MONGODB_URI = process.env.MONGODB_URI;
-const bcrypt = require('bcrypt');
-const session = require('express-session')
-const User = require('./models/users.js')
+const bcrypt = require("bcrypt");
+const session = require("express-session")
+const Phone = require("./models/phones.js");
+const User = require("./models/users.js")
 
 
 
@@ -19,13 +19,12 @@ const User = require('./models/users.js')
 //___________________
 //PORT
 //___________________
-// Allow use of Heroku's port or your own local port, depending on the environment
+
 const PORT = process.env.PORT || 3000;
 
 //___________________
 //THE MONGOD
 //___________________
-// How to connect to the database either via heroku or locally
 // SOMEDAY WE'LL FIND IT, THAT MONGOOSE CONNECTION
 mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true}, () => {
   console.log("Someday we'll find it, the mongoose connection...");
@@ -33,13 +32,12 @@ mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true}, () => {
 
 
 // Fix Depreciation Warnings from Mongoose*
-// May or may not need these depending on your Mongoose version
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
 
 
-// Error / success
+// Error / Success
 db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
 db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
 db.on('disconnected', () => console.log('mongo disconnected'));
@@ -52,7 +50,7 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));// extended: false - does not allow nested objects in query strings
 app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
-app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a   form
+app.use(methodOverride("_method"));// allow POST, PUT and DELETE from a   form
 app.use(session({
   secret: process.env.SECRET,
   resave: true,
@@ -60,23 +58,19 @@ app.use(session({
 }));
 
 
-
 //___________________
 // ROUTES
 //___________________
+
 /*home*/
 app.get("/", (req, res) => {
   if (typeof req.session === "undefined") {
-    console.log(typeof req.session);
     res.render("home.ejs");
   } else {
-    console.log("req.session is",typeof req.session);
-    console.log("This is session", req.session);
     res.render("home.ejs", {
       currentUser: req.session.currentUser
     });
-  }
-
+  };
 });
 
 /*new*/
@@ -98,7 +92,6 @@ app.get("/phones/new", (req,res) => {
 app.post("/phones", (req, res) => {
   Phone.create(req.body, (error, newPhone) => {
     console.log(req.body);
-    push.req.session.currentUser.phones(req.body)
     res.redirect("/phones");
   });
 });

@@ -14,7 +14,7 @@
         <img src="<%=phone.img%>" alt="">
         <h1><%=phone.name%></h1>
         <h2><%=phone.model%></h2>
-      
+
 
         Current Status: <%=phone.status%>
 
@@ -25,7 +25,7 @@
 
 
         <article class="flow-text card">
-          <h3>Log Entry</h3>
+          <h3>Comments</h3>
           <%=phone.log%>
         </article>
 
@@ -55,7 +55,7 @@
 
     </div>
     <% if (typeof currentUser !== "undefined" ) { %>
-      <% if (currentUser.username === "TR-1000") { %>
+      <% if (currentUser._id === "5d4934d0d756ba1fd877de01") { %>
         <form class="btn waves-effect waves-light right" action="/phones/<%=phone.id %>?_method=DELETE" method="POST">
           <input type="submit" value="Delete Phone">
         </form>
