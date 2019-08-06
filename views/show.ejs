@@ -53,14 +53,20 @@
           </ul>
         </div>
 
+
+    </div>
+
+    <% if (typeof currentUser !== "undefined" ) { %>
       <form class="btn waves-effect waves-light right" action="/phones/<%=phone.id %>?_method=DELETE" method="POST">
         <input type="submit" value="Delete Phone">
       </form>
 
-      <form action="/phones/<%=phone.id %>/edit" method="GET">
+      <form class="left" action="/phones/<%=phone.id %>/edit" method="GET">
         <input type="submit" value="Edit Phone Info" class="btn waves-effect waves-light">
       </form>
-    </main>
+      </main>
+    <% } %>
+
 
     <footer>
       <% include ./partials/footer.ejs %>

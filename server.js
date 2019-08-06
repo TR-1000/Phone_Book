@@ -9,6 +9,12 @@ const db = mongoose.connection;
 const mongoURI = "mongodb://localhost 27017/"+"gameOfPhones"; // the db name will be builds
 const Phone = require("./models/phones.js");
 const MONGODB_URI = process.env.MONGODB_URI;
+const bcrypt = require('bcrypt');
+const session = require('express-session')
+
+
+
+
 
 //___________________
 //PORT
@@ -47,6 +53,11 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));// extended: false - does not allow nested objects in query strings
 app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
 app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a   form
+app.use(session({
+  secret: process.env.SECRET,
+  resave: true,
+  saveUninitialized: false,
+}));
 
 
 
@@ -55,12 +66,31 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a   form
 //___________________
 /*home*/
 app.get("/", (req, res) => {
-  res.render("home.ejs")
-})
+  if (typeof req.session === "undefined") {
+    console.log(typeof req.session);
+    res.render("home.ejs");
+  } else {
+    console.log("req.session is",typeof req.session);
+    console.log("This is session", req.session);
+    res.render("home.ejs", {
+      currentUser: req.session.currentUser
+    });
+  }
+
+});
 
 /*new*/
 app.get("/phones/new", (req,res) => {
-  res.render("new.ejs");
+  if (typeof req.session === "undefined") {
+    console.log(typeof req.session);
+    res.render("new.ejs");
+  } else {
+    console.log("req.session is",typeof req.session);
+    console.log("This is session", req.session);
+    res.render("new.ejs", {
+      currentUser: req.session.currentUser
+    });
+  }
 });
 
 
@@ -75,10 +105,18 @@ app.post("/phones", (req, res) => {
 
 /*index*/
 app.get("/phones", (req, res) => {
+  console.log("index route", req.session.currentUser);
   Phone.find({}, (error, collection) => {
-    res.render("index.ejs", {
-      phones:collection
-    });
+    if (typeof req.session === "undefined") {
+      res.render("index.ejs", {
+        phones:collection,
+      });
+    } else {
+      res.render("index.ejs", {
+        phones:collection,
+        currentUser: req.session.currentUser
+      });
+    };
   });
 });
 
@@ -86,10 +124,18 @@ app.get("/phones", (req, res) => {
 
 /*show*/
 app.get("/phones/:id", (req, res) => {
+  console.log("show route", req.session);
   Phone.findById(req.params.id, (error, foundPhone) => {
-    res.render("show.ejs", {
-      phone:foundPhone
-    });
+    if (typeof req.session === "undefined") {
+      res.render("show.ejs", {
+        phone:foundPhone
+      });
+    } else {
+      res.render("show.ejs", {
+        phone:foundPhone,
+        currentUser: req.session.currentUser
+      });
+    };
   });
 });
 
@@ -97,9 +143,16 @@ app.get("/phones/:id", (req, res) => {
 /*edit*/
 app.get("/phones/:id/edit", (req, res) => {
   Phone.findById(req.params.id, (error, foundPhone) => {
-    res.render("edit.ejs", {
-      phone: foundPhone
-    });
+    if (typeof req.session === "undefined") {
+      res.render("edit.ejs", {
+        phone: foundPhone
+      });
+    } else {
+      res.render("edit.ejs", {
+        phone: foundPhone,
+        currentUser: req.session.currentUser
+      });
+    };
   });
 });
 
@@ -118,6 +171,12 @@ app.delete("/phones/:id", (req, res) => {
     res.redirect("/phones");
   });
 });
+
+const userController = require('./controllers/users.js');
+app.use('/users', userController);
+
+const sessionsController = require('./controllers/sessions.js');
+app.use('/sessions', sessionsController);
 
 
 //___________________

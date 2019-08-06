@@ -74,3 +74,8 @@ footer h5  {
 footer a  {
   font-family: 'Play', sans-serif;
 }
+
+#logout {
+  padding: 0px;
+  margin-left: 15px;
+}

@@ -8,16 +8,15 @@
     <header>
       <% include ./partials/header.ejs %>
     </header>
-    <a id="mew" href="/phones/new">Add a phone to your collection</a>
+
+    <% if (typeof currentUser !== "undefined" ) { %>
+      <a id="mew" href="/phones/new">Add a phone to your collection</a>
+    <% } %>
 
     <main>
-      <h3>trizzle's smartphone collection</h3>
     <div class="container index-container">
-
-
       <% for (phone of phones) { %>
         <a href="/phones/<%=phone.id%>">
-
               <h3> <%=phone.name%> </h3>
               <img src="<%=phone.img%>" class="index-img">
 

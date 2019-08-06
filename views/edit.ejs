@@ -7,48 +7,51 @@
     <header>
       <% include ./partials/header.ejs %>
     </header>
+    <div class="container">
+      
+      <h2>Edit This Phone's Info</h2>
+      <form action="/phones/<%=phone.id %>?_method=PUT" method="POST">
 
-    <a href="/phones">Phone home</a>
-    <h2>Edit This Phone's Infor</h2>
-    <form action="/phones/<%=phone.id %>?_method=PUT" method="POST">
+        phone name
+        <input type="text" name="name" value ="<%=phone.name %>"> <br>
 
-      phone name
-      <input type="text" name="name" value ="<%=phone.name %>"> <br>
+        model number
+        <input type="text" name="model" value = "<%=phone.model %>"> <br>
 
-      model number
-      <input type="text" name="model" value = "<%=phone.model %>"> <br>
+        main image url
+        <input type="text" name="img" value = "<%=phone.img %>"> <br>
 
-      main image url
-      <input type="text" name="img" value = "<%=phone.img %>"> <br>
-
-      gallery images (pictures of your phone) <br>
-      <textarea name="gallery" rows="8" cols="80" placeholder="enter comma-separated values">
-      <%=phone.gallery %>
-      </textarea> <br>
+        gallery images (pictures of your phone) <br>
+        <textarea name="gallery" rows="8" cols="80" placeholder="enter comma-separated values">
+        <%=phone.gallery %>
+        </textarea> <br>
 
 
-      album images (Album of images taken with this phone) <br>
-      <textarea name="album" rows="8" cols="80" placeholder="enter comma-separated values">
-        <%=phone.album %>
-      </textarea> <br>
+        album images (Album of images taken with this phone) <br>
+        <textarea name="album" rows="8" cols="80" placeholder="enter comma-separated values">
+          <%=phone.album %>
+        </textarea> <br>
 
-      description and specs <br>
-      <textarea name="description" rows="8" cols="80">
-        <%=phone.description %>
-      </textarea> <br>
+        description and specs <br>
+        <textarea name="description" rows="8" cols="80">
+          <%=phone.description %>
+        </textarea> <br>
 
-      status
-      <input type="text" name="status" id="status" placeholder="daily driver/ sold / traded in/ broken"
-      value="<%=phone.status %>"> <br>
+        status
+        <input type="text" name="status" id="status" placeholder="daily driver/ sold / traded in/ broken"
+        value="<%=phone.status %>"> <br>
 
-      log entry <br>
-      <textarea name="log" rows="8" cols="80" placeholder="What's the story with this phone">
-        <%=phone.log %>
-      </textarea> <br>
+        log entry <br>
+        <textarea name="log" rows="8" cols="80" placeholder="What's the story with this phone">
+          <%=phone.log %>
+        </textarea> <br>
 
-      <input type="submit" value="Edit Phone"> <br>
+        <input type="submit" value="Save Edit"> <br>
 
-    </form>
+      </form>
+    </div>
+
+    <% include ./partials/footer.ejs %>
 
     <!-- Scripts -->
     <% include ./partials/scripts.ejs %>
