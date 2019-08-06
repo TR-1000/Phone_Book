@@ -3,8 +3,8 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-
 const phoneSchema = new Schema ({
+  user: String,
   name: {type: String, required: true},
   model:{type: String},
   img: {type: String},
@@ -12,7 +12,6 @@ const phoneSchema = new Schema ({
   album: String,
   description: {type: String},
   status:String,
-  acc:String,
   log: String
 },{timestamps: true})
 

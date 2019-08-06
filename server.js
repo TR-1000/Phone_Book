@@ -11,7 +11,7 @@ const Phone = require("./models/phones.js");
 const MONGODB_URI = process.env.MONGODB_URI;
 const bcrypt = require('bcrypt');
 const session = require('express-session')
-
+const User = require('./models/users.js')
 
 
 
@@ -98,7 +98,8 @@ app.get("/phones/new", (req,res) => {
 app.post("/phones", (req, res) => {
   Phone.create(req.body, (error, newPhone) => {
     console.log(req.body);
-    res.redirect("/phones");
+    push.req.session.currentUser.phones(req.body)
+    res.redirect("/phones",);
   });
 });
 

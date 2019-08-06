@@ -26,14 +26,14 @@ sessions.post('/', (req, res) => {
         res.redirect('/')
       } else {
         res.send('<a href="/">wrong password</a>')
-      }
-    }
-  })
-})
+      };
+    };
+  });
+});
 
 sessions.delete('/', (req, res)=>{
     req.session.destroy(() => {
         res.redirect('/')
-    })
-})
+    });
+});
 module.exports = sessions

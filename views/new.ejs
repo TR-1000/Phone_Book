@@ -9,11 +9,11 @@
       <% include ./partials/header.ejs %>
     </header>
 
-    
+
 
     <div class="container">
       <h1>Add a new phone to your collection</h1>
-      <form action="/phones" method="POST">
+      <form action="/users/<%=currentUser.id %>" method="POST">
 
         <h3>phone name</h3>
         <input type="text" name="name" id="name"> <br>
@@ -36,11 +36,10 @@
         <h3>status</h3>
         <input type="text" name="status" id="status" placeholder="daily driver/ sold / traded in/ broken"> <br>
 
-        <h3>accessories</h3>
-        <input type="text" name="acc" id="acc" placeholder="enter comma-separated values"> <br>
-
         <h3>log entry </h3>
         <textarea name="log" rows="8" cols="80" placeholder="What's the story with this phone"></textarea> <br>
+
+
 
         <input type="submit" value="Add Phone"> <br>
 
@@ -48,7 +47,7 @@
     </div>
 
     <footer>
-
+      <% include ./partials/footer.ejs %>
     </footer>
 
 

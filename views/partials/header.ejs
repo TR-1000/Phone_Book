@@ -12,19 +12,19 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <% if (typeof currentUser === "undefined" ) { %>
           <ul class="right hide-on-med-and-down">
-            <li><a href="/phones">Collections</a></li>
+            <li><a href="/users">Collections</a></li>
             <li><a href="/sessions/new">Login</a></li>
             <li><a href="/users/new">Sign Up</a></li>
           </ul>
           <ul class="sidenav" id="mobile-demo">
-            <li><a href="/phones">Collections</a></li>
+            <li><a href="/users">Collections</a></li>
             <li><a href="#">Login</a></li>
             <li><a href="#">Sign Up</a></li>
           </ul>
         <% } else { %>
           <ul class="right hide-on-med-and-down">
             <li>Hello,<%=currentUser.username %></li>
-            <li><a href="/phones">Collections</a></li>
+            <li><a href="/users">Collections</a></li>
             <li>
               <form id="logout" action="/sessions?_method=DELETE" method="POST">
                 <input type="submit" value="Logout" class="waves-effect waves-light btn" />
@@ -32,8 +32,9 @@
             </li>
           </ul>
           <ul class="sidenav" id="mobile-demo">
-            <li><a href="/phones">Collections</a></li>
             <li><a href="#">Hello,<%=currentUser.username %></a></li>
+            <li><a href="/phones">Collections</a></li>
+
             <li>
               <form action="/sessions?_method=DELETE" method="POST">
                 <input type="submit" value="Logout" class="waves-effect waves-light btn"/>
