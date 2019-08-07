@@ -110,3 +110,9 @@ footer .row {
   display: flex;
   justify-content: space-between;
 }
+
+.log {
+  margin: 0 auto;
+  width: 29%;
+  text-align: left;
+}

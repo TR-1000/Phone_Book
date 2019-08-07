@@ -8,30 +8,32 @@
       <% include ./partials/header.ejs %>
     </header>
 
+    <a class="btn" href="/phones">Back</a>
+
     <div class="container">
 
       <h2>Edit This Phone's Info</h2>
       <form action="/phones/<%=phone.id %>?_method=PUT" method="POST">
 
-        phone name
+        <h3>phone name:</h3>
         <input type="text" name="name" value ="<%=phone.name %>"> <br>
 
-        model number
+        <h3>model number:</h3>
         <input type="text" name="model" value = "<%=phone.model %>"> <br>
 
-        main image url
-        <input type="text" name="img" value = "<%=phone.img %>"> <br>
-
-        status
+          <h3>status:</h3>
         <input type="text" name="status" id="status" placeholder="daily driver/ sold / traded in/ broken"
         value="<%=phone.status %>"> <br>
 
-        log entry <br>
+        <h3>log entry: </h3>
         <textarea class="materialize-textarea" name="log" rows="8" cols="80" placeholder="What's the story with this phone">
           <%=phone.log %>
         </textarea> <br>
 
-        gallery images (pictures of your phone) <br>
+        <h3>main image url:</h3>
+        <input type="text" name="img" value = "<%=phone.img %>"> <br>
+
+          <h3>gallery images (pictures of your phone)</h3>
         <textarea  name="gallery" rows="8" cols="80" placeholder="enter comma-separated values">
         <%=phone.gallery %>
         </textarea> <br>
@@ -43,12 +45,12 @@
 
 
 
-        <input type="submit" value="Save Edit"> <br>
+        <input class="btn"type="submit" value="Save Edit"> <br>
 
       </form>
-      <a href="/phones">Back</a>
-    </div>
 
+    </div>
+    <a class="btn" href="/phones">Back</a>
     <% include ./partials/footer.ejs %>
 
     <!-- Scripts -->
