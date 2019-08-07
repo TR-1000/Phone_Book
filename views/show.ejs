@@ -8,29 +8,27 @@
     <header>
       <% include ./partials/header.ejs %>
     </header>
+    <a class="btn" href="/phones">Back</a>
+
 
     <main>
+
       <div class="container">
         <img src="<%=phone.img%>" alt="">
         <h1><%=phone.name%></h1>
         <h2><%=phone.model%></h2>
 
 
-        Current Status: <%=phone.status%>
+        <span><h5>Current Status:</h5><%=phone.status%></span>
 
-        <article class="flow-text card">
-          <h3>Description</h3>
-          <%=phone.description%>
-        </article>
-
-
-        <article class="flow-text card">
-          <h3>Comments</h3>
-          <%=phone.log%>
-        </article>
+          <article class="log">
+            <h5>Log Entry:</h5>
+            <%=phone.log%>
+          </article>
 
         <h3>Gallery</h3>
-        <div class="slider" style= "height:900px">
+        (Pictures of the Phone)
+        <div class="slider" >
           <ul class="slides">
             <% for (image of phone.gallery.split(",")) { %>
               <li style="opacity: 0; transform: translateX(0px) translateY(0px);">
@@ -41,6 +39,7 @@
         </div>
 
         <h3>Album</h3>
+        (Pictures Taken With the Phone)
         <div class="slider">
           <ul class="slides">
             <% for (image of phone.album.split(",")) { %>
@@ -65,7 +64,6 @@
         </form>
       <% } %>
     <% } %>
-
 
       </main>
 

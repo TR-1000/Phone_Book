@@ -4748,7 +4748,6 @@ small {
 .card {
   position: relative;
   margin: 0.5rem 0 1rem 0;
-  background-color: #a9ccdc;
   -webkit-transition: -webkit-box-shadow .25s;
   transition: -webkit-box-shadow .25s;
   transition: box-shadow .25s;
@@ -8271,8 +8270,9 @@ input[type=range]::-ms-thumb {
 
 .slider {
   position: relative;
-  height: 900px;
-  width: 41%;
+  height: 500px;
+  width: 60%;
+  margin: 0 auto;
 }
 
 .slider.fullscreen {
@@ -8358,7 +8358,7 @@ input[type=range]::-ms-thumb {
 }
 
 .slider .indicators .indicator-item.active {
-  background-color: #4CAF50;
+  background-color: #1f6ca3;
 }
 
 .carousel {

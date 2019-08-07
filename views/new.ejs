@@ -8,20 +8,26 @@
     <header>
       <% include ./partials/header.ejs %>
     </header>
-
+    <a class="btn" href="/phones">Back</a>
 
 
     <div class="container">
       <h1>Add a new phone to your collection</h1>
       <form action="/phones" method="POST">
 
-        <h3>phone name</h3>
+        <h3>phone name:</h3>
         <input type="text" name="name" id="name"> <br>
 
-        <h3>model number</h3>
+        <h3>model number:</h3>
         <input type="text" name="model" id="model"> <br>
 
-        <h3>main image url</h3>
+        <h3>status:</h3>
+        <input type="text" name="status" id="status" placeholder="daily driver/ sold / traded in/ broken"> <br>
+
+        <h3>log entry: </h3>
+        <textarea class="materialize-textarea" name="log" rows="8" cols="80" placeholder="What's the story with this phone"></textarea> <br>
+
+        <h3>main image url:</h3>
         <input type="url" name="img" id="img"> <br>
 
         <h3>gallery images (pictures of your phone)</h3>
@@ -30,22 +36,12 @@
         <h3>album images (Album of images taken with this phone)</h3>
         <textarea name="album" rows="8" cols="80" placeholder="enter comma-separated values"></textarea> <br>
 
-        <h3>description and specs</h3>
-        <textarea name="description" rows="8" cols="80"></textarea> <br>
 
-        <h3>status</h3>
-        <input type="text" name="status" id="status" placeholder="daily driver/ sold / traded in/ broken"> <br>
-
-        <h3>log entry </h3>
-        <textarea name="log" rows="8" cols="80" placeholder="What's the story with this phone"></textarea> <br>
-
-
-
-        <input type="submit" value="Add Phone"> <br>
+        <input class="btn" type="submit" value="Add Phone"> <br>
 
       </form>
     </div>
-
+    <a class="btn" href="/phones">Back</a>
     <footer>
       <% include ./partials/footer.ejs %>
     </footer>
