@@ -1,7 +1,7 @@
 # Phone_Book
 ### A log of smartPhone addiction...Basically a personal phone blog. 
 [This is a CRUD application](https://the-phone-book.herokuapp.com/) for posting pictures and other information about smartphones I've purchased over the last decade.
-![](https://github.com/TR-1000/TR-1000.github.io/blob/master/steam-api-app/did_i_buy_that.jpg)
+![](https://github.com/TR-1000/Phone_Book/blob/master/a_game_of_phones.png)
 
 # Built With
 * JavaScript
