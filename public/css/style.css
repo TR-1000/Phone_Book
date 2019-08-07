@@ -65,7 +65,7 @@ main {
   padding: 20px;
   margin: 0 auto;
   width: 67%;
-  text-align: left;
+
 }
 
 footer h5  {
@@ -114,5 +114,9 @@ footer .row {
 .log {
   margin: 0 auto;
   width: 29%;
-  text-align: left;
+}
+
+.show {
+  margin: 0 auto;
+  width: 60%;
 }
