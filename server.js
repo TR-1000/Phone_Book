@@ -25,7 +25,7 @@ const PORT = process.env.PORT || 3000;
 //___________________
 //THE MONGOD
 //___________________
-// SOMEDAY WE'LL FIND IT, THAT MONGOOSE CONNECTION
+//That mongoose connection
 mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true}, () => {
   console.log("Someday we'll find it, the mongoose connection...");
 });
@@ -61,6 +61,14 @@ app.use(session({
 //___________________
 // ROUTES
 //___________________
+
+/*The if statement in the routes checks if user is signed in by checking for a session. 
+Not only is this checking credentials for acess to areas of the site it's also to display the user's name in the nav bar.
+
+I tried to make this into a funtion but my function so I wouldn't have to type this out for every route
+but my function wouldn't function.
+
+If anyone is reading this as any ideas I'd appreciate it.*/
 
 /*home*/
 app.get("/", (req, res) => {
