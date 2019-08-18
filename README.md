@@ -1,7 +1,6 @@
 # A Game of Phones
 ### A log of smartPhone addiction...Basically a personal phone blog. 
 [A Game of Phones is a full stack application](https://the-phone-book.herokuapp.com/) for posting pictures and other information about smartphones I've purchased over the last decade.
-![](https://github.com/TR-1000/Phone_Book/blob/master/a_game_of_phones.png)
 
 # Built With
 * JavaScript
