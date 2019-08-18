@@ -1,6 +1,6 @@
-# Phone_Book
+# A Game of Phones
 ### A log of smartPhone addiction...Basically a personal phone blog. 
-[This is a CRUD application](https://the-phone-book.herokuapp.com/) for posting pictures and other information about smartphones I've purchased over the last decade.
+[A Game of Phones is a full stack application](https://the-phone-book.herokuapp.com/) for posting pictures and other information about smartphones I've purchased over the last decade.
 ![](https://github.com/TR-1000/Phone_Book/blob/master/a_game_of_phones.png)
 
 # Built With
@@ -28,3 +28,9 @@
 * Tagging and search function.
 * Tech news feed.
 
+# Challenges
+* Coming up with a name. Always a struggle.
+* Deciding if this should be a personal or a community app.
+* Technically the hardest thing was implementing authentication. Since the on;y time I tried it was during a class code along.
+* Styling is always and challenges as I'm more about functionality than aesthetics.
+* Never being satisfied.
