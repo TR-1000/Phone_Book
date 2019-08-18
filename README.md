@@ -34,3 +34,5 @@
 * Technically the hardest thing was implementing authentication. Since the on;y time I tried it was during a class code along.
 * Styling is always and challenges as I'm more about functionality than aesthetics.
 * Never being satisfied.
+
+![](https://github.com/TR-1000/Phone_Book/blob/master/a_game_of_phones.png)
