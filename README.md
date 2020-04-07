@@ -31,7 +31,7 @@
 # Challenges
 * Coming up with a name. Always a struggle.
 * Deciding if this should be a personal or a community app.
-* Technically the hardest thing was implementing authentication. Since the on;y time I tried it was during a class code along.
+* Technically the hardest thing was implementing authentication. Since the only time I tried it was during a class code along.
 * Styling is always and challenges as I'm more about functionality than aesthetics.
 * Never being satisfied.
 
