@@ -19,15 +19,6 @@
 * Image slideshow needs improvement. Some images are cut off or not rendered at all.
 * Links to outside websites have not been enabled.
 
-# Roadmap
-* Securing passwords with encryption.
-* Preventing duplicate usernames.
-* Allow other users the create and edit there own collection.
-* The ability to make blog posts about those collections.
-* Ability for other users to comment on other collection.
-* Tagging and search function.
-* Tech news feed.
-
 # Challenges
 * Coming up with a name. Always a struggle.
 * Deciding if this should be a personal or a community app.
