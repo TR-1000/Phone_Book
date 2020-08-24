@@ -64,6 +64,15 @@ app.use(session({
 //___________________
 
 
+
+/*CORS*/
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+
 /*home*/
 app.get("/", (req, res) => {
   if (typeof req.session === "undefined") {

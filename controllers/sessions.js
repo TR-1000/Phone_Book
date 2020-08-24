@@ -3,6 +3,13 @@ const sessions = express.Router()
 const User = require('../models/users.js')
 
 // form for new session/log in
+// sessions.use((req, res, next) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   next();
+// });
+
+
+
 sessions.get('/new', (req, res) => {
     res.render('sessions/new.ejs')
 });
