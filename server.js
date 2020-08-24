@@ -8,10 +8,14 @@ const app = express ();
 const db = mongoose.connection;
 const mongoURI = "mongodb://localhost 27017/"+"gameOfPhones";
 const MONGODB_URI = process.env.MONGODB_URI;
+//console.log(process.env);
 const bcrypt = require("bcrypt");
 const session = require("express-session")
 const Phone = require("./models/phones.js");
 const User = require("./models/users.js")
+
+
+
 
 //___________________
 //PORT
@@ -22,22 +26,19 @@ const PORT = process.env.PORT || 3000;
 //___________________
 //THE MONGOD
 //___________________
-<<<<<<< HEAD
-// THAT MONGOOSE CONNECTION
-=======
 //That mongoose connection
->>>>>>> 58acb0a04b3c88f19b15cf20e7b90db3d35e600c
-mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true}, () => {
+mongoose.connect(MONGODB_URI ,  { useUnifiedTopology: true }, () => {
   console.log("Someday we'll find it, the mongoose connection...");
 });
 
-// Warnings fix
+
+// Fix Depreciation Warnings from Mongoose*
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
 
 
-// Error handling
+// Error / Success
 db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
 db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
 db.on('disconnected', () => console.log('mongo disconnected'));
@@ -48,9 +49,9 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 //___________________
 
 app.use(express.static("public"));
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());//
-app.use(methodOverride("_method"));
+app.use(express.urlencoded({ extended: true }));// extended: false - does not allow nested objects in query strings
+app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
+app.use(methodOverride("_method"));// allow POST, PUT and DELETE from a   form
 app.use(session({
   secret: process.env.SECRET,
   resave: true,
@@ -62,9 +63,6 @@ app.use(session({
 // ROUTES
 //___________________
 
-
-
-If anyone is reading this as any ideas I'd appreciate it.*/
 
 /*home*/
 app.get("/", (req, res) => {
@@ -88,7 +86,7 @@ app.get("/phones/new", (req,res) => {
     res.render("new.ejs", {
       currentUser: req.session.currentUser
     });
-  };
+  }
 });
 
 
@@ -103,7 +101,7 @@ app.post("/phones", (req, res) => {
 
 /*index*/
 app.get("/phones", (req, res) => {
-  console.log("the current user is", req.session.currentUser);
+  console.log("index route", req.session.currentUser);
   Phone.find({}, (error, collection) => {
     if (typeof req.session === "undefined") {
       res.render("index.ejs", {

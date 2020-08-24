@@ -17,18 +17,16 @@ users.post('/', (req, res) => {
     if (err) {
       console.log(err)
     }
-    req.session.currentUser = foundUser
+    req.session.currentUser = createdUser
     console.log(createdUser);
-    res.redirect('/')
+    res.json({ createdUser })
   });
 });
 
 /*index*/
 users.get("/", (req, res) => {
   User.find({}, (error, allUsers) => {
-    res.render("users/index.ejs", {
-      users: allUsers
-    });
+    res.json(allUsers);
   });
 });
 
@@ -36,9 +34,7 @@ users.get("/", (req, res) => {
 /*show*/
 users.get("/:id", (req, res) => {
   User.findById(req.params.id, (error, foundUser) => {
-    res.render("users/show.ejs", {
-      user: foundUser
-    });
+    res.json(foundUser);
   });
 });
 
