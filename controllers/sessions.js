@@ -11,7 +11,7 @@ const User = require('../models/users.js')
 
 
 sessions.get('/new', (req, res) => {
-    res.render('sessions/new.ejs')
+    res.json('sessions/new.ejs')
 });
 
 sessions.post('/', (req, res) => {
@@ -21,7 +21,7 @@ sessions.post('/', (req, res) => {
   User.findOne({ username: req.body.username}, (error, foundUser) => {
     if(error) {
       console.log(error)
-      res.send("Mistakes were made")
+      res.json(error)
     } else if (!foundUser) {
       res.send('user not found!')
     } else {
@@ -30,9 +30,9 @@ sessions.post('/', (req, res) => {
         console.log("this is the current user", foundUser);
         req.session.currentUser = foundUser
         console.log("This is req.session", req.session);
-        res.redirect('/')
+        res.json(foundUser)
       } else {
-        res.send('<a href="/">wrong password</a>')
+        res.json(error)
       };
     };
   });
