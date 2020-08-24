@@ -9,14 +9,18 @@
       <% include ./partials/header.ejs %>
     </header>
 
-    <% if (typeof currentUser !== "undefined" ) { %>
-      <% if (currentUser._id === "5d4934d0d756ba1fd877de01") { %>
-        <a class="btn" href="/phones/new">Add a phone to your collection</a>
-      <% } %>
-    <% } %>
+
+
 
     <main>
+      <% if (typeof currentUser !== "undefined" ) { %>
+        <% if (currentUser.username === phone.owner) { %>
+          <h1><%=currentUser.username%>'s Collection</h1>
+          <a class="btn" href="/phones/new">Add a phone to your collection</a>
+        <% } %>
+      <% } %>
     <div class="container index-container">
+
       <% for (phone of phones) { %>
         <a href="/phones/<%=phone.id%>">
               <h3> <%=phone.name%> </h3>

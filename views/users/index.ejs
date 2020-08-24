@@ -10,7 +10,7 @@
     <main>
       <h1>List of addicts</h1>
       <% for (user of users) { %>
-        <h2><a href="/users/<%=user.id %>"><%=user.username%></a></h2>
+        <h2><a href="/users/:id/collection"><%=user.username%></a></h2>
       <% } %>
     </main>
     <footer>

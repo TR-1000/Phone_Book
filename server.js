@@ -13,9 +13,6 @@ const session = require("express-session")
 const Phone = require("./models/phones.js");
 const User = require("./models/users.js")
 
-
-
-
 //___________________
 //PORT
 //___________________
@@ -25,19 +22,18 @@ const PORT = process.env.PORT || 3000;
 //___________________
 //THE MONGOD
 //___________________
-// SOMEDAY WE'LL FIND IT, THAT MONGOOSE CONNECTION
+// THAT MONGOOSE CONNECTION
 mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true}, () => {
   console.log("Someday we'll find it, the mongoose connection...");
 });
 
-
-// Fix Depreciation Warnings from Mongoose*
+// Warnings fix
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
 
 
 
-// Error / Success
+// Error handling
 db.on('error', (err) => console.log(err.message + ' is Mongod not running?'));
 db.on('connected', () => console.log('mongo connected: ', MONGODB_URI));
 db.on('disconnected', () => console.log('mongo disconnected'));
@@ -48,9 +44,9 @@ db.on('disconnected', () => console.log('mongo disconnected'));
 //___________________
 
 app.use(express.static("public"));
-app.use(express.urlencoded({ extended: true }));// extended: false - does not allow nested objects in query strings
-app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
-app.use(methodOverride("_method"));// allow POST, PUT and DELETE from a   form
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());//
+app.use(methodOverride("_method"));
 app.use(session({
   secret: process.env.SECRET,
   resave: true,
@@ -61,6 +57,12 @@ app.use(session({
 //___________________
 // ROUTES
 //___________________
+
+/*checks if user is signed in by checking for a session. Not only is this checking credentials for acess to areas of the site it's also to display the user's name in the nav bar.
+
+I tried to make this into a funtion but my function so I wouldn't have to type this out for every route but my function wouldn't function.
+
+If anyone is reading this as any ideas I'd appreciate it.*/
 
 /*home*/
 app.get("/", (req, res) => {
@@ -84,7 +86,7 @@ app.get("/phones/new", (req,res) => {
     res.render("new.ejs", {
       currentUser: req.session.currentUser
     });
-  }
+  };
 });
 
 
@@ -99,7 +101,7 @@ app.post("/phones", (req, res) => {
 
 /*index*/
 app.get("/phones", (req, res) => {
-  console.log("index route", req.session.currentUser);
+  console.log("the current user is", req.session.currentUser);
   Phone.find({}, (error, collection) => {
     if (typeof req.session === "undefined") {
       res.render("index.ejs", {
