@@ -13,14 +13,22 @@ users.get('/new', (req, res) => {
 
 /*create*/
 users.post('/', (req, res) => {
-  User.create(req.body, (err, createdUser) => {
-    if (err) {
-      console.log(err)
-    }
-    req.session.currentUser = createdUser
-    console.log(createdUser);
-    res.json({ createdUser })
-  });
+  User.findOne({ username: req.body.username }, (err, foundUser)=> {
+     if(foundUser === null) {
+        User.create(req.body, (err, createdUser)=>{
+           res.status(201).json({
+              status: 201,
+              message: 'user created'
+           })
+        })
+     } else {
+       res.status(400).json({
+          status: 400,
+          message: 'username already exists!'
+       })
+        res.json("Username already exists!");
+     }
+  })
 });
 
 /*index*/

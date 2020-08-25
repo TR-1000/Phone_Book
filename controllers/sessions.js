@@ -21,18 +21,30 @@ sessions.post('/', (req, res) => {
   User.findOne({ username: req.body.username}, (error, foundUser) => {
     if(error) {
       console.log(error)
-      res.json(error)
+      res.status(401).json({
+         status: 401,
+         message: 'login failed'
+      })
     } else if (!foundUser) {
-      res.send('user not found!')
+      res.status(401).json({
+         status: 401,
+         message: 'user not found'
+      })
     } else {
       if(req.body.password == foundUser.password) {
 
         console.log("this is the current user", foundUser);
         req.session.currentUser = foundUser
         console.log("This is req.session", req.session);
-        res.json(foundUser)
+        res.status(200).json({
+          status: 200,
+          message: 'login successful'
+        })
       } else {
-        res.json(error)
+        res.status(401).json({
+           status: 401,
+           message: 'login failed'
+        })
       };
     };
   });
