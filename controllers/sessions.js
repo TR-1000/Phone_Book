@@ -14,6 +14,19 @@ sessions.get('/new', (req, res) => {
     res.json('sessions/new.ejs')
 });
 
+sessions.get('/active', (req, res) => {
+  if (req.session.currentUser) {
+    res.status(200).json({
+      status:200,
+      message: `currently logged in as ${req.session.currentUser.username}`
+    })
+  } else {
+    res.status(404).json({
+      message: 'not logged in'
+    })
+  }
+})
+
 sessions.post('/', (req, res) => {
   console.log(req.session);
   console.log('this is req.body ', req.body)
