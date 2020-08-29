@@ -19,8 +19,7 @@ sessions.post('/', (req, res) => {
     } else if (!foundUser) {
       res.send('user not found!')
     } else {
-      if(req.body.password == foundUser.password) {
-
+      if(bcrypt.compareSync(req.body.password, foundUser.password)) {
         //console.log("this is the current user", foundUser);
         req.session.currentUser = foundUser
         //console.log("This is req.session", req.session);
