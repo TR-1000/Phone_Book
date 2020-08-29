@@ -16,7 +16,6 @@ const User = require("./models/users.js")
 
 
 
-
 //___________________
 //PORT
 //___________________
@@ -27,7 +26,7 @@ const PORT = process.env.PORT || 3000;
 //THE MONGOD
 //___________________
 //That mongoose connection
-mongoose.connect(MONGODB_URI ,  { useUnifiedTopology: true }, () => {
+mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true }, () => {
   console.log("Someday we'll find it, the mongoose connection...");
 });
 
@@ -63,16 +62,6 @@ app.use(session({
 // ROUTES
 //___________________
 
-
-
-/*CORS*/
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
-
 /*home*/
 app.get("/", (req, res) => {
   if (typeof req.session === "undefined") {
@@ -87,11 +76,11 @@ app.get("/", (req, res) => {
 /*new*/
 app.get("/phones/new", (req,res) => {
   if (typeof req.session === "undefined") {
-    console.log(typeof req.session);
+    //console.log(typeof req.session);
     res.render("new.ejs");
   } else {
-    console.log("req.session is",typeof req.session);
-    console.log("This is session", req.session);
+    // console.log("req.session is",typeof req.session);
+    // console.log("This is session", req.session);
     res.render("new.ejs", {
       currentUser: req.session.currentUser
     });
@@ -102,7 +91,7 @@ app.get("/phones/new", (req,res) => {
 /*create*/
 app.post("/phones", (req, res) => {
   Phone.create(req.body, (error, newPhone) => {
-    console.log(req.body);
+    //console.log(req.body);
     res.redirect("/phones");
   });
 });
@@ -110,7 +99,7 @@ app.post("/phones", (req, res) => {
 
 /*index*/
 app.get("/phones", (req, res) => {
-  console.log("index route", req.session.currentUser);
+  //console.log("index route", req.session.currentUser);
   Phone.find({}, (error, collection) => {
     if (typeof req.session === "undefined") {
       res.render("index.ejs", {
@@ -126,10 +115,9 @@ app.get("/phones", (req, res) => {
 });
 
 
-
 /*show*/
 app.get("/phones/:id", (req, res) => {
-  console.log("show route", req.session);
+  //console.log("show route", req.session);
   Phone.findById(req.params.id, (error, foundPhone) => {
     if (typeof req.session === "undefined") {
       res.render("show.ejs", {

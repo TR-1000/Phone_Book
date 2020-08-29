@@ -2,8 +2,7 @@ const express = require('express')
 const users = express.Router()
 const User = require('../models/users.js')
 const Phones = require("../models/users.js");
-
-
+const bcrypt = require('bcrypt');
 
 /*new*/
 users.get('/new', (req, res) => {
@@ -13,28 +12,28 @@ users.get('/new', (req, res) => {
 
 /*create*/
 users.post('/', (req, res) => {
-  User.findOne({ username: req.body.username }, (err, foundUser)=> {
-     if(foundUser === null) {
+  User.findOne({ username: req.body.username }, (err, foundUser)=>{
+    if (foundUser) {
+      res.send('<a href="/users/new"> <----Back--- USERNAME UNAVAILABLE </a>')
+    } else if (foundUser === null) {
+        req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
         User.create(req.body, (err, createdUser)=>{
-           res.status(201).json({
-              status: 201,
-              message: 'user created'
-           })
-        })
+           res.redirect('/')
+           console.log("user created");
+        });
      } else {
-       res.status(400).json({
-          status: 400,
-          message: 'username already exists!'
-       })
-        res.json("Username already exists!");
+      res.send('<a href="/users/new"> <----Back---MISTAKES WERE MADE</a>')
      }
-  })
+  });
 });
+
 
 /*index*/
 users.get("/", (req, res) => {
   User.find({}, (error, allUsers) => {
-    res.json(allUsers);
+    res.render("users/index.ejs", {
+      users: allUsers
+    });
   });
 });
 
@@ -42,24 +41,9 @@ users.get("/", (req, res) => {
 /*show*/
 users.get("/:id", (req, res) => {
   User.findById(req.params.id, (error, foundUser) => {
-    res.json(foundUser);
-  });
-});
-
-
-/*user collection show route*/  //FIND USERS ID change owner from username to id
-///////////////////////////////////////////////////////////////////////////////
-users.get("/:id/collection", (req, res) => {
-  Phones.find({owner: req.params.id}, (error, foundPhones) => {
-  //////////////////////////////////////////////////////////////////////////////
-    if (typeof req.session === "undefined") {
-      res.render("/");
-    } else {
-      res.render(`users/show.ejs`, {
-        phones: foundPhones,
-        currentUser: req.session.currentUser
-      });
-    };
+    res.render("users/show.ejs", {
+      user: foundUser
+    });
   });
 });
 

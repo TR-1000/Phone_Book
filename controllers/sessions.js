@@ -1,63 +1,32 @@
 const express = require('express')
 const sessions = express.Router()
 const User = require('../models/users.js')
+const bcrypt = require('bcrypt');
 
 // form for new session/log in
-// sessions.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   next();
-// });
-
-
-
 sessions.get('/new', (req, res) => {
-    res.json('sessions/new.ejs')
+    res.render('sessions/new.ejs')
 });
 
-sessions.get('/active', (req, res) => {
-  if (req.session.currentUser) {
-    res.status(200).json({
-      status:200,
-      message: `currently logged in as ${req.session.currentUser.username}`
-    })
-  } else {
-    res.status(404).json({
-      message: 'not logged in'
-    })
-  }
-})
-
 sessions.post('/', (req, res) => {
-  console.log(req.session);
-  console.log('this is req.body ', req.body)
-  console.log('this is password', req.body.password)
+  // console.log(req.session);
+  // console.log('this is req.body ', req.body)
+  // console.log('this is password', req.body.password)
   User.findOne({ username: req.body.username}, (error, foundUser) => {
     if(error) {
-      console.log(error)
-      res.status(401).json({
-         status: 401,
-         message: 'login failed'
-      })
+      //console.log(error)
+      res.send('<a href="/sessions/new">MISTAKES WERE MADE</a>')
     } else if (!foundUser) {
-      res.status(401).json({
-         status: 401,
-         message: 'user not found'
-      })
+      res.send('user not found!')
     } else {
       if(req.body.password == foundUser.password) {
 
-        console.log("this is the current user", foundUser);
+        //console.log("this is the current user", foundUser);
         req.session.currentUser = foundUser
-        console.log("This is req.session", req.session);
-        res.status(200).json({
-          status: 200,
-          message: 'login successful'
-        })
+        //console.log("This is req.session", req.session);
+        res.redirect('/')
       } else {
-        res.status(401).json({
-           status: 401,
-           message: 'login failed'
-        })
+        res.send('<a href="/sessions/new">INCORRECT USERNAME OR PASSWORD</a>')
       };
     };
   });
