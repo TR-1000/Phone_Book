@@ -1,7 +1,7 @@
 <div class="parallax-container">
   <h1>A Game of Phones</h1>
     <div class="parallax">
-      <img src="https://boygeniusreport.files.wordpress.com/2018/08/bgr-galaxy-note-9-71.jpg?quality=98&strip=all" >
+      <img src="https://github.com/TR-1000/aGameOfPhones/blob/master/public/galaxy-note-9-71.jpg?raw=true" >
     </div>
 </div>
 
@@ -12,19 +12,19 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <% if (typeof currentUser === "undefined" ) { %>
           <ul class="right hide-on-med-and-down">
-            <li><a href="/users/">Collections</a></li>
+            <li><a href="/phones/">Collection</a></li>
             <li><a href="/sessions/new">Login</a></li>
             <li><a href="/users/new">Sign Up</a></li>
           </ul>
           <ul class="sidenav" id="mobile-demo">
-            <li><a href="/:id/collection">Collection</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Sign Up</a></li>
+            <li><a href="/phones">Collection</a></li>
+            <li><a href="/sessions/new">Login</a></li>
+            <li><a href="/users/new">Sign Up</a></li>
           </ul>
         <% } else { %>
           <ul class="right hide-on-med-and-down">
             <li>Hello, <%=currentUser.username %></li>
-            <li><a href="/:id/collection">Collection</a></li>
+            <li><a href="/phones">Collection</a></li>
             <li>
               <form id="logout" action="/sessions?_method=DELETE" method="POST">
                 <input type="submit" value="Logout" class="waves-effect waves-light btn" />
@@ -33,8 +33,7 @@
           </ul>
           <ul class="sidenav" id="mobile-demo">
             <li><a href="#">Hello, <%=currentUser.username %>!</a></li>
-            <li><a href="/:id/collection">Collections</a></li>
-
+            <li><a href="/phones">Collections</a></li>
             <li>
               <form action="/sessions?_method=DELETE" method="POST">
                 <input type="submit" value="Logout" class="waves-effect waves-light btn"/>

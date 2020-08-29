@@ -17,7 +17,6 @@
         <img class="show" src="<%=phone.img%>" alt="">
         <h1><%=phone.name%></h1>
         <h2><%=phone.model%></h2>
-        <h4>Owner: <%=phone.owner%></h4>
 
         <article class="log">
           <h5>Current Status:</h5>
@@ -47,9 +46,8 @@
         <div class="slider">
           <ul class="slides">
             <% for (image of phone.album.split(",")) { %>
-
               <li style="opacity: 0; transform: translateX(0px) translateY(0px);">
-                <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="  style="background-image: url(<%=image %>);">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIABAP///wAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" style="background-image: url(<%=image %>);">
               </li>
             <% } %>
           </ul>
@@ -58,11 +56,10 @@
 
     </div>
     <% if (typeof currentUser !== "undefined" ) { %>
-      <% if (currentUser.username === phone.owner) { %>
+      <% if (currentUser._id === "5d4934d0d756ba1fd877de01") { %>
         <form class="btn waves-effect waves-light right" action="/phones/<%=phone.id %>?_method=DELETE" method="POST">
           <input type="submit" value="Delete Phone">
         </form>
-
         <form class="left" action="/phones/<%=phone.id %>/edit" method="GET">
           <input type="submit" value="Edit Phone Info" class="btn waves-effect waves-light">
         </form>
